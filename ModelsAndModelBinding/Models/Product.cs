@@ -1,4 +1,6 @@
-﻿namespace ModelsAndModelBinding.Models;
+﻿using System.ComponentModel.DataAnnotations;
+
+namespace ModelsAndModelBinding.Models;
 
 /// <summary>
 /// Represents an individual product with its properties and behaviors.
@@ -15,18 +17,22 @@ public class Product
     /// of the product. May contain alphanumeric characters, spaces,
     /// and special characters. This property is required.
     /// </summary>
+    [StringLength(20, MinimumLength = 2, ErrorMessage = "The product name must be between 2 and 20 characters long.")]
+    [Required(ErrorMessage = "The product name is required.")]
     public required string Name { get; set; }
 
     /// <summary>
     /// The pre tax sales price the customer pays for the product.
     /// This property is required and must be a non-negative value.
     /// </summary>
+    [Range(0.01, double.MaxValue, ErrorMessage = "The price must be a positive value.")]
     public required double Price { get; set; }
 
     /// <summary>
     /// The date and time that the product became available for sale.
     /// This property is required and must be a valid date and time.
     /// </summary>
+    [DataType(DataType.DateTime)]
     public required DateTime StartSalesDate { get; set; }
 }
 
