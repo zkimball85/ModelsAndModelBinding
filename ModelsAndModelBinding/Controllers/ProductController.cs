@@ -23,6 +23,8 @@ public class ProductController : Controller
         {
             // Add the product to the database.
 
+            TempData["Message"] = "Your product has been added successfully.";
+
             // Redirect to the product list page.
             return RedirectToAction("Index");
         }
